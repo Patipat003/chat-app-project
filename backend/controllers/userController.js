@@ -1,3 +1,4 @@
+import cloudinary from "../lib/cloudinary.js";
 import { generateToken } from "../lib/utils.js";
 import User from "../models/User.js";
 import bcrypt from "bcryptjs";
@@ -7,16 +8,20 @@ export const signup = async (req, res) => {
 
   try {
     if (!fullName || !email || !password || !bio) {
-      return res.json({ success: false, message: "Missing Details" });
+      return res
+        .status(400)
+        .json({ success: false, message: "Missing Details" });
     }
+
     const user = await User.findOne({ email });
 
     if (user) {
-      return res.json({ success: false, message: "Account already exists" });
+      return res
+        .status(409)
+        .json({ success: false, message: "Account already exists" });
     }
 
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
+    const hashedPassword = await bcrypt.hash(password, 10); // genSalt
 
     const newUser = await User.create({
       fullName,
@@ -27,7 +32,7 @@ export const signup = async (req, res) => {
 
     const token = generateToken(newUser._id);
 
-    res.json({
+    res.status(201).json({
       success: true,
       userData: newUser,
       token,
@@ -35,9 +40,49 @@ export const signup = async (req, res) => {
     });
   } catch (error) {
     console.log(error.message);
-    res.json({
+    res.status(500).json({
       success: false,
       message: error.message,
     });
   }
 };
+
+export const checkAuth = (req, res) => {
+  res.status(200).json({ success: true, user: req.user });
+};
+
+export const updateProfile = async (req, res) => {
+  try {
+    const { profilePic, bio, fullName } = req.body;
+
+    const userId = req.user._id;
+    let updateUser;
+
+    if (!profilePic) {
+      updateUser = await User.findByIdAndUpdate(
+        userId,
+        { bio, fullName },
+        { new: true }
+      );
+    } else {
+      const upload = await cloudinary.uploader.upload(profilePic);
+
+      updateUser = await User.findByIdAndUpdate(
+        userId,
+        {
+          profilePic: upload.secure_url,
+          bio,
+          fullName,
+        },
+        { new: true }
+      );
+    }
+
+    res.status(200).json({ success: true, user: updateUser });
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+// 3:0.5:56

@@ -59,6 +59,7 @@ export const ChatProvider = ({ children }) => {
 
     socket.on("newMessage", (newMessages) => {
       if (selectedUser && newMessages.senderId === selectedUser._id) {
+        // (markMessageAsSeen)
         newMessages.seen = true;
         setMessages((prevMessages) => [...prevMessages, newMessages]);
         axios.put(`/api/messages/mark/${newMessages._id}`);
@@ -68,6 +69,7 @@ export const ChatProvider = ({ children }) => {
           [newMessages.senderId]: prevUnseenMessages[newMessages.senderId]
             ? prevUnseenMessages[newMessages.senderId] + 1
             : 1,
+          // ...prev, [smt]: value ? true : false
         }));
       }
     });

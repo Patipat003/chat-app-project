@@ -114,5 +114,3 @@ export const updateProfile = async (req, res) => {
     res.status(500).json({ success: false, message: error.message });
   }
 };
-
-// 3:0.5:56

@@ -10,6 +10,7 @@ const ChatContainer = () => {
   const { authUser, onlineUsers } = useContext(AuthContext);
 
   const scrollEnd = useRef();
+  const inputRef = useRef();
 
   const [input, setInput] = useState("");
 
@@ -37,6 +38,7 @@ const ChatContainer = () => {
 
   useEffect(() => {
     if (selectedUser) {
+      inputRef.current?.focus();
       getMessages(selectedUser._id);
     }
   }, [selectedUser]);
@@ -130,6 +132,7 @@ const ChatContainer = () => {
             }
             value={input}
             type="text"
+            ref={inputRef}
             autoFocus
             placeholder="Send a message"
             className="flex-1 text-sm p-3 border-none rounded-lg outline-none text-white placeholder-gray-400"

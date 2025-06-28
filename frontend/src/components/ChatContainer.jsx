@@ -130,6 +130,7 @@ const ChatContainer = () => {
             }
             value={input}
             type="text"
+            autoFocus
             placeholder="Send a message"
             className="flex-1 text-sm p-3 border-none rounded-lg outline-none text-white placeholder-gray-400"
           />

@@ -58,9 +58,6 @@ export const ChatProvider = ({ children }) => {
     if (!socket) return;
 
     socket.on("newMessage", (newMessages) => {
-      console.log("New message from:", newMessages.senderId);
-      console.log("Current selected user:", selectedUser?._id);
-
       if (selectedUser && newMessages.senderId === selectedUser._id) {
         // (markMessageAsSeen)
         newMessages.seen = true;

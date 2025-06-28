@@ -29,13 +29,13 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-cover bg-center flex items-center justify-center gap-8 sm:justify-evenly max-sm:flex-col backdrop-blur-2xl">
+    <div className="min-h-screen bg-cover bg-center flex items-center justify-center gap-8 sm:justify-evenly max-sm:flex-col backdrop-blur-2xl bg-black/60">
       {/* --------------- Left --------------- */}
       <img src={assets.logo_big} alt="" className="w-[min(30vw,250px)]" />
       {/* --------------- Right --------------- */}
       <form
         onSubmit={onSubmitHandler}
-        className="border-2 bg-white/8 text-white border-gray-500 p-6 flex flex-col gap-6 rounded-lg shadow-lg"
+        className="border-2 bg-white/4 text-white border-gray-500 p-6 flex flex-col gap-6 rounded-lg shadow-lg"
       >
         <h2 className="font-medium text-2xl flex justify-between items-center">
           {currentState}
@@ -97,14 +97,14 @@ const LoginPage = () => {
           {currentState === "Sign up" ? "Create Account" : "Login Now"}
         </button>
 
-        <label className="flex items-center gap-2 text-sm text-gray-500 cursor-pointer">
+        <label className="flex items-center gap-2 text-sm text-gray-400 cursor-pointer">
           <input type="checkbox" required />
           <span>Agree to the terms of use & privacy policy.</span>
         </label>
 
         <div className="flex flex-col gap-2">
           {currentState === "Sign up" ? (
-            <p className="text-sm text-gray-600">
+            <p className="text-sm text-gray-400">
               Already have an account?
               <span
                 onClick={() => {
@@ -117,7 +117,7 @@ const LoginPage = () => {
               </span>
             </p>
           ) : (
-            <p className="text-sm text-gray-600">
+            <p className="text-sm text-gray-400">
               Create an account
               <span
                 onClick={() => {

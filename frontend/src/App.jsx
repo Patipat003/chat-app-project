@@ -11,7 +11,10 @@ const App = () => {
   const { authUser } = useContext(AuthContext);
 
   return (
-    <div className="bg-[url('/bgImage.svg')] bg-contain bg-center bg-no-repeat min-h-screen bg-black">
+    <div
+      className="bg-[url('https://images.hdqwalls.com/wallpapers/raiden-shogun-genshin-impact-e7.jpg')] 
+      bg-cover bg-center bg-no-repeat min-h-screen bg-black"
+    >
       <Toaster />
       <Routes>
         <Route

@@ -77,7 +77,7 @@ const ChatContainer = () => {
       </div>
 
       {/* -------------- chat area -------------- */}
-      <div className="flex flex-col h-[calc(100%-120px)] overflow-y-scroll p-3 pb-6">
+      <div className="flex flex-col h-[calc(100%-120px)] overflow-y-scroll p-3 pb-4">
         {messages.map((msg, index) => (
           <div
             key={index}
@@ -89,12 +89,12 @@ const ChatContainer = () => {
               <img
                 src={msg.image}
                 onClick={() => window.open(msg.image)}
-                className="max-w-[230px] border border-gray-700 rounded-lg overflow-hidden mb-8 cursor-pointer"
+                className="max-w-[230px] border border-gray-700 rounded-lg overflow-hidden mb-10 cursor-pointer"
                 alt=""
               />
             ) : (
               <p
-                className={`p-2 px-3 max-w-[200px] md:text-sm font-light rounded-lg mb-6 break-all bg-violet-500/30 text-white ${
+                className={`p-2 px-3 max-w-[250px] md:text-sm font-light rounded-lg mb-10 break-all bg-violet-500/30 text-white ${
                   msg.senderId === authUser._id
                     ? "rounded-br-none"
                     : "rounded-bl-none"
@@ -111,9 +111,9 @@ const ChatContainer = () => {
                     : selectedUser?.profilePic || assets.avatar_icon
                 }
                 alt=""
-                className="w-7 h-7 rounded-full object-cover object-center"
+                className="w-9 h-9 rounded-full object-cover object-center"
               />
-              <p className="text-gray-500">
+              <p className="text-gray-500 mt-2">
                 {formatMessageTime(msg.createdAt)}
               </p>
             </div>

@@ -54,7 +54,7 @@ const ChatContainer = () => {
         <img
           src={selectedUser.profilePic || assets.avatar_icon}
           alt=""
-          className="w-8 rounded-full"
+          className="w-8 rounded-full object-cover object-center"
         />
         <p className="flex-1 text-lg text-white flex items-center gap-2">
           {selectedUser.fullName}
@@ -108,7 +108,7 @@ const ChatContainer = () => {
                     : selectedUser?.profilePic || assets.avatar_icon
                 }
                 alt=""
-                className="w-7 rounded-full"
+                className="w-7 rounded-full object-cover object-center"
               />
               <p className="text-gray-500">
                 {formatMessageTime(msg.createdAt)}

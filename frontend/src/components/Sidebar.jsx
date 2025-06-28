@@ -42,7 +42,7 @@ const Sidebar = () => {
             <img
               src={authUser.profilePic || assets.avatar_icon}
               alt="Logo"
-              className="h-12 rounded-full"
+              className="h-12 w-12 rounded-full object-cover object-center"
             />
             <div className="ml-4">
               <p className="text-lg">QuickChat</p>
@@ -103,7 +103,7 @@ const Sidebar = () => {
             <img
               src={user?.profilePic || assets.avatar_icon}
               alt="ProfilePic"
-              className="w-[35px] aspect-[1/1] rounded-full"
+              className="w-[35px] aspect-[1/1] rounded-full object-cover object-center"
             />
             <div className="flex flex-col leading-5">
               <p>{user.fullName}</p>

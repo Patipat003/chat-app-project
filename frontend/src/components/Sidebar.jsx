@@ -14,7 +14,7 @@ const Sidebar = () => {
     setUnseenMessages,
   } = useContext(ChatContext);
 
-  const { logout, onlineUsers } = useContext(AuthContext);
+  const { logout, onlineUsers, authUser } = useContext(AuthContext);
 
   const [input, setInput] = useState(false);
 
@@ -38,7 +38,24 @@ const Sidebar = () => {
     >
       <div className="pb-5">
         <div className="flex justify-between items-center">
-          <img src={assets.logo} alt="Logo" className="max-w-40" />
+          <div className="flex flex-col-2">
+            <img
+              src={authUser.profilePic || assets.avatar_icon}
+              alt="Logo"
+              className="h-12 rounded-full"
+            />
+            <div className="ml-4">
+              <p className="text-lg">QuickChat</p>
+              <div className="flex items-center gap-2">
+                <span className="relative flex w-2 h-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                </span>
+
+                <p className="text-sm text-gray-400">{authUser.fullName}</p>
+              </div>
+            </div>
+          </div>
           <div className="relative py-2 group">
             <img
               src={assets.menu_icon}

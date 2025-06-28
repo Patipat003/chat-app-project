@@ -67,7 +67,7 @@ const ProfilePage = () => {
               }
               alt=""
               className={`w-12 h-12 ${
-                (previewImg || selectedImg) && "rounded-full object-cover "
+                (previewImg || selectedImg) && "rounded-full object-cover"
               }`}
             />
             upload profile image

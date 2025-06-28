@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { AuthContext } from "./AuthContext";
 
 export const ChatContext = createContext();
@@ -37,7 +37,7 @@ export const ChatProvider = ({ children }) => {
   };
 
   // send message to selected user
-  const sendMessage = async (messageData) => {
+  const sendMessages = async (messageData) => {
     try {
       const { data } = await axios.post(
         `/api/messages/send/${selectedUser._id}`,
@@ -64,17 +64,35 @@ export const ChatProvider = ({ children }) => {
         setMessages((prevMessages) => [...prevMessages, newMessages]);
         axios.put(`/api/messages/mark/${newMessages._id}`);
       } else {
-        setUnseenMessages((prevUnseenMessages) => ({
+        setUnseenMessages((prevUnseenMessages = {}) => ({
           ...prevUnseenMessages,
-          [newMessages.senderId]: prevUnseenMessages[newMessages.senderId]
-            ? prevUnseenMessages[newMessages.senderId] + 1
-            : 1,
-          // ...prev, [smt]: value ? true : false
+          [newMessages.senderId]:
+            (prevUnseenMessages?.[newMessages.senderId] ?? 0) + 1,
         }));
       }
     });
   };
 
-  const value = {};
+  // unsubscribe from message
+  const unsubscribeFromMessages = () => {
+    if (socket) socket.off("newMessage");
+  };
+
+  useEffect(() => {
+    subscribeToMessages();
+    return () => unsubscribeFromMessages();
+  }, [socket, selectedUser]);
+
+  const value = {
+    messages,
+    users,
+    selectedUser,
+    getUsers,
+    getMessages,
+    sendMessages,
+    setSelectedUser,
+    unseenMessages,
+    setUnseenMessages,
+  };
   return <ChatContext.Provider value={value}>{children}</ChatContext.Provider>;
 };

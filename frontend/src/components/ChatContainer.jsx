@@ -86,7 +86,8 @@ const ChatContainer = () => {
             {msg.image ? (
               <img
                 src={msg.image}
-                className="max-w-[230px] border border-gray-700 rounded-lg overflow-hidden mb-8"
+                onClick={() => window.open(msg.image)}
+                className="max-w-[230px] border border-gray-700 rounded-lg overflow-hidden mb-8 cursor-pointer"
                 alt=""
               />
             ) : (

@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import assets from "../assets/assets";
+import { ClipLoader } from "react-spinners";
 import { AuthContext } from "../../context/AuthContext";
 
 const LoginPage = () => {
@@ -9,6 +10,7 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const [bio, setBio] = useState("");
   const [isDataSubmitted, setIsDataSubmitted] = useState(false);
+  const [isloading, setIsLoading] = useState(false);
 
   const { login } = useContext(AuthContext);
 
@@ -93,7 +95,11 @@ const LoginPage = () => {
           ></textarea>
         )}
 
-        <button className="py-3 bg-gradient-to-r from-purple-400 to-violet-600 text-white rounded-md cursor-pointer">
+        <button
+          onClick={() => setIsLoading(true)}
+          className="flex items-center justify-center gap-2 py-3 bg-gradient-to-r from-purple-400 to-violet-600 text-white rounded-md cursor-pointer"
+        >
+          <ClipLoader loading={isloading} size={16} color="#ffffff" />
           {currentState === "Sign up" ? "Create Account" : "Login Now"}
         </button>
 

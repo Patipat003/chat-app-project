@@ -3,6 +3,7 @@ import assets from "../assets/assets";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
+import { ClipLoader } from "react-spinners";
 
 const ProfilePage = () => {
   const { authUser, updateProfile } = useContext(AuthContext);
@@ -11,6 +12,7 @@ const ProfilePage = () => {
   const [selectedImg, setSelectedImg] = useState(null);
   const [name, setName] = useState(authUser.fullName);
   const [bio, setBio] = useState(authUser.bio);
+  const [isloading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -93,9 +95,10 @@ const ProfilePage = () => {
           ></textarea>
           <button
             type="submit"
-            className="bg-gradient-to-r from-purple-400 to-violet-600
-            text-white p-2 rounded-full text-lg cursor-pointer"
+            onClick={() => setIsLoading(true)}
+            className="flex items-center justify-center gap-2 py-2 rounded-full text-lg bg-gradient-to-r from-purple-400 to-violet-600 text-white cursor-pointer"
           >
+            <ClipLoader loading={isloading} size={16} color="#ffffff" />
             Save
           </button>
         </form>

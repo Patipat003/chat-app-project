@@ -37,7 +37,7 @@ const RightSidebar = () => {
           <p className="px-10 mx-auto">{selectedUser.bio}</p>
         </div>
 
-        <hr className="my-4 text-gray-500" />
+        <hr className="my-4 text-violet-600" />
 
         <div className="px-5 text-xs">
           <p>Media</p>
@@ -61,7 +61,7 @@ const RightSidebar = () => {
         <button
           onClick={logout}
           className="absolute bottom-5 left-1/2 transform -translate-x-1/2 
-        bg-gradient-to-r from-purple-400 to-violet-600 text-white border-none 
+        bg-violet-800 hover:scale-105 transition-all duration-300 text-white border-none 
         text-sm font-light py-2 px-20 rounded-full cursor-pointer"
         >
           Logout

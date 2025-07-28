@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import assets from "../assets/assets";
 import { ClipLoader } from "react-spinners";
 import { AuthContext } from "../../context/AuthContext";
+import { IoIosArrowBack } from "react-icons/io";
 
 const LoginPage = () => {
   const [currentState, setCurrentState] = useState("Sign up");
@@ -31,23 +32,23 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-cover bg-center flex items-center justify-center gap-8 sm:justify-evenly max-sm:flex-col backdrop-blur-2xl bg-black/60">
+    <div className="min-h-screen flex items-center justify-center gap-8 sm:justify-evenly max-sm:flex-col">
       {/* --------------- Left --------------- */}
       <img src={assets.logo_big} alt="" className="w-[min(30vw,250px)]" />
       {/* --------------- Right --------------- */}
       <form
         onSubmit={onSubmitHandler}
-        className="border-2 bg-white/4 text-white border-gray-500 p-6 flex flex-col gap-6 rounded-lg shadow-lg"
+        className="border-2 text-white border-violet-600 p-6 flex flex-col gap-6 rounded-lg shadow-lg"
       >
         <h2 className="font-medium text-2xl flex justify-between items-center">
           {currentState}
           {isDataSubmitted && (
-            <img
+            <span
               onClick={() => setIsDataSubmitted(false)}
-              src={assets.arrow_icon}
-              alt=""
-              className="w-5 cursor-pointer"
-            />
+              className="text-sm text-violet-500 cursor-pointer"
+            >
+              <IoIosArrowBack className="w-5 h-5 inline-block" />
+            </span>
           )}
         </h2>
         {currentState === "Sign up" && !isDataSubmitted && (
@@ -56,7 +57,7 @@ const LoginPage = () => {
               type="text"
               onChange={(e) => setFullName(e.target.value)}
               value={fullName}
-              className="p-2 border border-gray-500 rounded-md focus:outline-none"
+              className="p-2 border border-violet-600 rounded-md focus:outline-none"
               placeholder="Full Name"
               required
             />
@@ -69,7 +70,7 @@ const LoginPage = () => {
               type="email"
               onChange={(e) => setEmail(e.target.value)}
               value={email}
-              className="p-2 border border-gray-500 rounded-md focus:outline-none"
+              className="p-2 border border-violet-600 rounded-md focus:outline-none"
               placeholder="Email Address"
               required
             />
@@ -77,7 +78,7 @@ const LoginPage = () => {
               type="password"
               onChange={(e) => setPassword(e.target.value)}
               value={password}
-              className="p-2 border border-gray-500 rounded-md focus:outline-none"
+              className="p-2 border border-violet-600 rounded-md focus:outline-none"
               placeholder="Password"
               required
             />
@@ -89,7 +90,7 @@ const LoginPage = () => {
             onChange={(e) => setBio(e.target.value)}
             value={bio}
             rows={4}
-            className="p-2 border border-gray-500 rounded-md focus:outline-none focus-ring-2 focus:ring-indigo-500"
+            className="p-2 border border-violet-600 rounded-md focus:outline-none focus-ring-2 focus:ring-violet-600"
             placeholder="provide a short bio..."
             required
           ></textarea>
@@ -97,7 +98,7 @@ const LoginPage = () => {
 
         <button
           onClick={() => setIsLoading(true)}
-          className="flex items-center justify-center gap-2 py-3 bg-gradient-to-r from-purple-400 to-violet-600 text-white rounded-md cursor-pointer"
+          className="flex items-center justify-center gap-2 py-3 bg-violet-600 hover:scale-95 transition-all duration-300 text-white rounded-md cursor-pointer"
         >
           <ClipLoader loading={isloading} size={16} color="#ffffff" />
           {currentState === "Sign up" ? "Create Account" : "Login Now"}

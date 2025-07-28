@@ -43,8 +43,8 @@ const ProfilePage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-cover bg-no-repeat flex items-center justify-center backdrop-blur-2xl  bg-black/60">
-      <div className="w-5/6 max-w-3xl bg-black/4 text-gray-300 border-2 border-gray-600 flex items-center justify-between max-sm:flex-col-reverse rounded-lg">
+    <div className="min-h-screen flex items-center justify-center">
+      <div className="w-5/6 max-w-3xl text-gray-300 border-1 border-violet-800 bg-black/10 px-4 py-2 transition-all duration-300 flex items-center justify-between max-sm:flex-col-reverse rounded-lg">
         <form
           onSubmit={handleSubmit}
           className="flex flex-col gap-5 p-10 flex-1"
@@ -82,21 +82,21 @@ const ProfilePage = () => {
             value={name}
             required
             placeholder="Your name"
-            className="p-2 border border-gray-500 rounded-md 
+            className="p-2 border border-violet-500 rounded-md 
           focus:outline-none focus:ring-2 focus:ring-violet-500"
           />
           <textarea
             onChange={(e) => setBio(e.target.value)}
             value={bio}
             placeholder="Write profile bio"
-            className="p-2 border border-gray-500 rounded-md 
+            className="p-2 border border-violet-500 rounded-md 
           focus:outline-none focus:ring-2 focus:ring-violet-500"
             rows={4}
           ></textarea>
           <button
             type="submit"
             onClick={() => setIsLoading(true)}
-            className="flex items-center justify-center gap-2 py-2 rounded-full text-lg bg-gradient-to-r from-purple-400 to-violet-600 text-white cursor-pointer"
+            className="flex items-center justify-center gap-2 py-2 rounded-full text-lg bg-violet-800 hover:scale-105 transition-all duration-300 text-white cursor-pointer"
           >
             <ClipLoader loading={isloading} size={16} color="#ffffff" />
             Save

@@ -5,7 +5,7 @@ const NotFoundPage = () => {
 
   return (
     <div
-      className="flex flex-col items-center justify-center h-screen space-y-4 backdrop-blur-2xl bg-black/40 
+      className="flex flex-col items-center justify-center h-screen space-y-4 
         overflow-hidden relative"
     >
       <div className="text-7xl font-bold text-gray-400">404</div>

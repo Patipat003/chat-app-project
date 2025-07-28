@@ -52,7 +52,7 @@ const ChatContainer = () => {
   return selectedUser ? (
     <div className="h-full overflow-scroll relative backdrop-blur-lg">
       {/* -------------- Header -------------- */}
-      <div className="flex items-center gap-3 py-3 mx-4 border-b border-stone-500">
+      <div className="flex items-center gap-3 py-3 mx-4 border-b border-violet-500">
         <img
           src={selectedUser.profilePic || assets.avatar_icon}
           alt=""
